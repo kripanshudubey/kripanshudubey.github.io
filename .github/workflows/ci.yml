@@ -1,29 +1,22 @@
-name: Deploy Portfolio CI
+name: Portfolio CI
 
 on:
   push:
     branches: [ "main" ]
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+  pull_request:
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
+      - name: Validate HTML
+        run: |
+          echo "Checking index.html exists..."
+          test -f index.html
 
-      - name: Upload Artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: .
-
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v2
+      - name: Success
+        run: echo "CI Passed 🚀"
