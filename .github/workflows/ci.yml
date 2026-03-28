@@ -1,0 +1,22 @@
+name: Portfolio CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Validate HTML
+        run: |
+          echo "Checking index.html exists..."
+          test -f index.html
+
+      - name: Success
+        run: echo "CI Passed 🚀"
