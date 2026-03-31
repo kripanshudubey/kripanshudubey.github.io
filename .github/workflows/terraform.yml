@@ -38,3 +38,5 @@ jobs:
 
       - name: Terraform Plan
         run: terraform plan
+      - name: List Buckets
+        run: aws s3 ls
